@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,
+  Navigate,
+  Routes,
+  Route,
+  Outlet,
+} from 'react-router-dom'
+import Dashboard from './pages/dashboard'
+import Calendar from './pages/calendar'
+import Home from './pages/home'
+import Login from './pages/login'
+import Register from './pages/register'
+import { useSelector } from 'react-redux'
+import './index.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const PrivateRoutes = () => {
+  const { isAuth } = useSelector((state) => state.auth)
+
+  return <>{isAuth ? <Outlet /> : <Navigate to='/login' />}</>
 }
 
-export default App;
+const RestrictedRoutes = () => {
+  const { isAuth } = useSelector((state) => state.auth)
+
+  return <>{!isAuth ? <Outlet /> : <Navigate to='/dashboard' />}</>
+}
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element = {<Navigate to="/login" />}  />
+        <Route element={<PrivateRoutes />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/calendar' element={<Calendar />} />
+        </Route>
+
+        <Route element={<RestrictedRoutes />}>
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App

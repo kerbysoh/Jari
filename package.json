@@ -3,12 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "@themesberg/tailwind-datepicker": "^1.1.0",
+    "moment": "^2.29.3",
     "react": "^18.0.0",
+    "react-awesome-calendar": "^1.0.14",
+    "react-datepicker": "^4.7.0",
+    "react-datetime-picker": "^3.5.0",
     "react-dom": "^18.0.0",
+    "react-redux": "^7.2.8",
     "react-scripts": "5.0.0",
+    "react-tooltip": "^4.2.21",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -34,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.0.23"
   }
 }
